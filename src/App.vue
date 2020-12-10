@@ -1,61 +1,61 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
+    <v-app-bar flat app color="secondary">
+      <v-app-bar-nav-icon
+        color="primary"
+        v-if="$vuetify.breakpoint.xsOnly"
+        @click.stop="drawer = !drawer"
       >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      </v-app-bar-nav-icon>
+      <v-toolbar-title>
+        <v-img contain height="32" src="./assets/logo.png"></v-img>
+      </v-toolbar-title>
+      <v-spacer />
+      <v-toolbar-items v-if="$vuetify.breakpoint.smAndUp">
+        <v-btn text>Услуги и цены</v-btn>
+        <v-btn text>Акции</v-btn>
+        <v-btn text>О компании</v-btn>
+        <v-btn text>Контакты</v-btn>
+      </v-toolbar-items>
     </v-app-bar>
+    <v-navigation-drawer v-model="drawer" absolute bottom temporary>
+      <v-list nav dense>
+        <v-list-item-group>
+          <v-list-item>
+            <v-list-item-title>Foo</v-list-item-title>
+          </v-list-item>
 
+          <v-list-item>
+            <v-list-item-title>Bar</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-title>Fizz</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-title>Buzz</v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
     <v-main>
-      <HelloWorld/>
+      <h1>Hello</h1>
     </v-main>
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
 
 export default Vue.extend({
   name: 'App',
 
   components: {
-    HelloWorld
   },
 
   data: () => ({
-    //
+    drawer: false
   })
 })
 </script>
